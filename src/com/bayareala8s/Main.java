@@ -1,6 +1,7 @@
 package com.bayareala8s;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Main {
 
@@ -8,6 +9,10 @@ public class Main {
 
         int n = 15;
         System.out.println(FizzBuzz(n));
+
+        String s1 = "mississippi";
+        System.out.println(removeAdjacentDuplicates(s1));
+
     }
 
     public static ArrayList<String> FizzBuzz(int n) {
@@ -24,5 +29,21 @@ public class Main {
                 result.add(String.valueOf(i));
         }
         return result;
+    }
+
+    public static String removeAdjacentDuplicates(String s) {
+        Stack<Character> stack = new Stack<>();
+        for(char c: s.toCharArray()) {
+            if(stack.empty() || c != stack.peek())
+                stack.push(c);
+            else
+                stack.pop();
+        }
+        StringBuffer sb = new StringBuffer();
+        while(!stack.empty()) {
+            sb.append(stack.peek());
+            stack.pop();
+        }
+        return sb.reverse().toString();
     }
  }
