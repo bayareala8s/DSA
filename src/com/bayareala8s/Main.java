@@ -296,4 +296,60 @@ public class Main {
         }
         return sb.reverse().toString();
     }
+
+    //Merge sorted arrays
+    public static  void merge(int[] a, int[] b, int lastA, int lastB) {
+        int indexA = lastA - 1;//index of last element in a
+        int indexB = lastB - 1;//index of last element in b
+
+        int indexMerged = lastB + lastA - 1; //End of merged array
+
+        //Merge a & b starting from last element in each
+        while(indexB >= 0) {
+            //end of a is > than end of b
+            if(indexA >= 0 && a[indexA] > b[indexB]) {
+                a[indexMerged] = a[indexA]; //copy element
+                indexA--;
+            }
+            else {
+                a[indexMerged] = b[indexB]; //copy element
+                indexB--;
+            }
+            indexMerged--; //move indices
+        }
+    }
+
+    //Delete middle node from linked list
+    public boolean deleteNode(Node n) {
+        if(n == null || n.next == null) {
+            return false; //Failure
+        }
+        Node next = n.next;
+        n.data = next.data;
+        n.next = next.next;
+        return true;
+    }
+
+    //Remove duplicates from an unsorted linked list
+    public void RemoveDuplicate(Node n) {
+        HashSet<Integer> set = new HashSet<>();
+        Node previous = null;
+        while(n != null) {
+            if(set.contains(n.data)) {
+                previous.next = n.next; // remove node
+            }
+            else {
+                set.add(n.data);
+                previous = n;
+            }
+            n = n.next;
+        }
+    }
+
+
+ }
+
+ class Node {
+    int data;
+    Node next;
  }
